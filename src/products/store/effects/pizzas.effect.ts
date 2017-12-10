@@ -21,4 +21,18 @@ export class PizzasEffects {
 				);
 		}),
 	);
+
+	@Effect()
+	createPizza$ = this.actions$.ofType(pizzaActions.CREATE_PIZZA).pipe(
+		map((action: pizzaActions.CreatePizza) => action.payload),
+		// tslint:disable-next-line:arrow-return-shorthand
+		switchMap(pizza => {
+			return this.pizzaService
+				.createPizza(pizza)
+				.pipe(
+					map(createdPizza => new pizzaActions.CreatePizzaSuccess(createdPizza)),
+					catchError(error => of(new pizzaActions.CreatePizzaFail(error))),
+				);
+		}),
+	);
 }

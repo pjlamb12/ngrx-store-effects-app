@@ -25,6 +25,7 @@ export function reducer(state = initialState, action: fromPizzas.PizzasAction): 
 			const pizzas = action.payload;
 
 			const entities = pizzas.reduce(
+				// tslint:disable-next-line:arrow-return-shorthand
 				(entities: { [id: number]: Pizza }, pizza: Pizza) => {
 					return {
 						...entities,
@@ -46,6 +47,18 @@ export function reducer(state = initialState, action: fromPizzas.PizzasAction): 
 				...state,
 				loading: false,
 				loaded: false,
+			};
+		}
+		case fromPizzas.CREATE_PIZZA_SUCCESS: {
+			const pizza = action.payload;
+			const entities = {
+				...state.entities,
+				[pizza.id]: pizza,
+			};
+
+			return {
+				...state,
+				entities,
 			};
 		}
 	}
