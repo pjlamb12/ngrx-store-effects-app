@@ -49,6 +49,7 @@ export function reducer(state = initialState, action: fromPizzas.PizzasAction): 
 				loaded: false,
 			};
 		}
+		case fromPizzas.UPDATE_PIZZA_SUCCESS:
 		case fromPizzas.CREATE_PIZZA_SUCCESS: {
 			const pizza = action.payload;
 			const entities = {
