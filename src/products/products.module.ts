@@ -24,7 +24,7 @@ import * as fromServices from './services';
 export const ROUTES: Routes = [
 	{
 		path: '',
-		canActivate: [fromGuards.PizzasGuard, fromGuards.ToppingsGuard],
+		canActivate: [fromGuards.PizzasGuard],
 		component: fromContainers.ProductsComponent,
 	},
 	{
